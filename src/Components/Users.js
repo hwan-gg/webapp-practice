@@ -6,13 +6,13 @@ import Column from 'antd/es/table/Column';
 import actions from '../Actions';
 const { Content } = Layout;
 
-function People() {
+function Users() {
 
-    const people = useSelector((state) => state.people);
+    const users = useSelector(( state ) => state.users);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch("http://localhost:4444/people").then((res) => res.json()).then( (data) => dispatch(actions.people.set(data)) );
+        dispatch(actions.users.get());
     },[]);
 
     const [open, setOpen] = useState(false);
@@ -25,17 +25,17 @@ function People() {
     function closeModal() {
         setOpen(false);
     }
-    function addPerson() {
+    function addUser() {
         setOpen(false);
-        dispatch(actions.people.add({ name: form.getFieldValue("name"), age: form.getFieldValue("age"), email: form.getFieldValue("email") }));
+        dispatch(actions.users.add({ name: form.getFieldValue("name"), age: form.getFieldValue("age"), email: form.getFieldValue("email") }));
     }
 
     return (
         <Content style={{ padding: 30 }}>
             <div style={{ marginBottom: 16 }} wrappercol={{span: 16, offset: 1}}>
                 <Button onClick={() => { showModal() }}>Add</Button>
-                <Modal title="Add Person" open={open} footer={null} closable={false} >
-                    <Form form={form} name="AddPersonForm" labelCol={{ span: 3 }} onFinish={addPerson} autoComplete='off'>
+                <Modal title="Add User" open={open} footer={null} closable={false} >
+                    <Form form={form} name="AddUserForm" labelCol={{ span: 3 }} onFinish={addUser} autoComplete='off'>
                         <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Input Name' }]}>
                             <Input />
                         </Form.Item>
@@ -54,15 +54,15 @@ function People() {
                     </Form>
                 </Modal>
             </div>
-            <Table dataSource={people}>
+            <Table dataSource={users}>
                 <Column title="Name" dataIndex="name" key="Name" />
                 <Column title="Age" dataIndex="age" key="Age" />
                 <Column title="Email" dataIndex="email" key="Email" />
-                <Column title="Action" dataIndex="" key='x' render={(_, data) => <Button onClick={() => (dispatch(actions.people.delete(data.name)))}>Delete</Button>} />
+                <Column title="Action" dataIndex="" key='x' render={(_, data) => <Button onClick={() => (dispatch(actions.users.delete(data.name)))}>Delete</Button>} />
             </Table>
         </Content>
 
     )
 }
 
-export default People
+export default Users

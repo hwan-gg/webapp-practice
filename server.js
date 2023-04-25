@@ -1,11 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const MainController = require('./Controllers/MainController');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 
 app.use(cors());
-
+app.use(express.json());
+app.use(express.urlencoded( { extended : false }));
 // connect to DB
 const connectDB = async () => {
     try {
@@ -19,30 +21,10 @@ const connectDB = async () => {
 }
 connectDB();
 
-app.get("/people", (req, res) => {
-    console.log("sent");
-    res.send([{   
-        name : "Joe",
-        age : 15,
-        email : "jooe15@hotmail.com"
-    },
-    {
-        name : "Catrina",
-        age : 16,
-        email : "catt@gmail.com"
-    },
-    {
-        name : "Hugh",
-        age : 12,
-        email : "hugeh@gmail.com"
-    },
-    {
-        name : "Emma",
-        age : 20,
-        email : "em_ma@yahoo.com"
-    }])
-});
-
+// Handle User related requests
+app.get("/getUsers", MainController.User.getUsers);
+app.post("/addUser", MainController.User.addUser);
+app.post("/deleteUser", MainController.User.deleteUser);
 
 mongoose.connection.once('open', () => {
     console.log('Connected to MongoDB');

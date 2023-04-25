@@ -2,22 +2,23 @@
 import { Provider } from 'react-redux';
 import { applyMiddleware, legacy_createStore } from 'redux';
 import { Switch, Route } from 'react-router-dom';
+import promise from 'redux-promise-middleware';
 import thunk from 'redux-thunk';
 import reducer from './Reducer';
 import Navbar from './Components/Navbar';
-import People from './Components/People';
+import Users from './Components/Users';
 
-const middleware = applyMiddleware(thunk);
-const store = legacy_createStore(reducer, middleware);
+const middleware = [thunk, promise];
+const store = legacy_createStore(reducer, applyMiddleware(...middleware));
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
         <Navbar />
-          <People />
+          <Users />
         {/* <Switch>
-          <Route path="/People" component={People}/>
+          <Route path="/Users" component={Users}/>
         </Switch> */}
 
       </div>

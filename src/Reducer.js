@@ -1,32 +1,39 @@
 import typeToReducer from "type-to-reducer";
+import { ActionType } from 'redux-promise-middleware';
 import actions from "./Actions.js";
 
 const initialState = {
-    people : [
+    users : [
         
     ]
-}
+};
 
 const reducer = typeToReducer({
-    [actions.people.add] : (state, action) => {
-        return {
-            ...state,
-            people : [...state.people, action.payload]
-        };
-    },
-    [actions.people.delete] : (state, action) => {
-        
-        const newPeople = state.people.filter((x) => x.name !== action.payload);
-
-        return {
-            ...state,
-            people : newPeople
+    [actions.users.add] : { 
+        [ActionType.Fulfilled] : (state, action) => {
+            return {
+                ...state,
+                users : [...state.users, action.payload]
+            };
         }
     },
-    [actions.people.set] : (state, action) => {
-        return {
-            ...state,
-            people : action.payload
+    [actions.users.delete] : {
+        [ActionType.Fulfilled] : (state, action) => {
+
+            const newuser = state.users.filter((x) => x.name !== action.payload.data.name);
+
+            return {
+                ...state,
+                users : newuser
+            }
+        }
+    },
+    [actions.users.get] : {
+        [ActionType.Fulfilled] : (state, action) => {
+            return {
+                ...state,
+                users : action.payload
+            }
         }
     }
 }, initialState);
