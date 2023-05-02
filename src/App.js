@@ -1,28 +1,35 @@
-
-import { Provider } from 'react-redux';
-import { applyMiddleware, legacy_createStore } from 'redux';
-import { Switch, Route } from 'react-router-dom';
-import promise from 'redux-promise-middleware';
-import thunk from 'redux-thunk';
-import reducer from './Reducer';
+import Layout from 'antd/es/layout/layout';
+import { Footer } from 'antd/es/layout/layout';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { unstable_HistoryRouter as Router, Routes, Route } from 'react-router-dom';
+import history from './history';
+import actions from './Actions';
 import Navbar from './Components/Navbar';
-import Users from './Components/Users';
-
-const middleware = [thunk, promise];
-const store = legacy_createStore(reducer, applyMiddleware(...middleware));
+import { Home, Login, Users, Profile } from './Components/Pages'
+import './App.css';
 
 function App() {
-  return (
-    <Provider store={store}>
-      <div className="App">
-        <Navbar />
-          <Users />
-        {/* <Switch>
-          <Route path="/Users" component={Users}/>
-        </Switch> */}
 
-      </div>
-    </Provider>
+  const dispatch = useDispatch();
+
+  useEffect( () => {
+    dispatch(actions.admin.enter);
+  },[dispatch]);
+
+  return (
+      <Router history={history}>
+        <Layout >
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/Users" element={<Users />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Profile" element={<Profile />} />
+          </Routes>
+          <Footer style={{ textAlign: 'center' }}>Hwan's webapp for practicing backend</Footer>
+        </Layout>
+      </Router>
   );
 }
 

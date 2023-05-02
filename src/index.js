@@ -1,17 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { Provider } from 'react-redux';
+import { applyMiddleware, legacy_createStore } from 'redux';
+import promise from 'redux-promise-middleware';
+import thunk from 'redux-thunk';
+import reducer from './Reducer';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './index.css';
+
+const middleware = [thunk, promise];
+const store = legacy_createStore(reducer, applyMiddleware(...middleware));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <Provider store={store}>
+        <App />
+    </Provider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

@@ -1,0 +1,35 @@
+body {
+    height: 100vh
+}
+
+#root {
+    height: 100%
+}
+
+.App {
+    height: 100%
+}
+
+.ant-layout {
+    height: 100%
+}
+
+.ant-layout-header {
+    flex: 0 0 auto;
+}
+
+.logo {
+    float: left;
+    width: 120px;
+    height: 31px;
+    line-height: 31px;
+    margin: 16px 24px 16px 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5%;
+    text-align: center;
+}
+
+.logo a {
+    text-decoration: none;
+    color: #bae0ff;
+}
