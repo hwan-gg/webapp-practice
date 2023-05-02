@@ -15,3 +15,7 @@ Uses ExpressJS to send required data to WebApp
 ## MongoDB
 
 The Server retrieves the data that will be sent to the WebApp from MongoDB using Mongoose
+
+## PassportJS
+
+Uses PassportJS to authenticate admin and manage session
