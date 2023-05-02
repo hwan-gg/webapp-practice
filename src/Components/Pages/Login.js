@@ -11,7 +11,6 @@ function Login() {
     const dispatch = useDispatch();
     
     const onFinish = (values) => {
-        console.log(values);
         dispatch(actions.admin.login(values));
     };
     const onFinishFailed = (errorInfo) => {

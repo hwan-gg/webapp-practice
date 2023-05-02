@@ -1,5 +1,5 @@
 import React from 'react'
-import { HomeOutlined, UserOutlined, KeyOutlined, CheckOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, KeyOutlined, CheckOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -35,6 +35,11 @@ function Navbar() {
             label: <Link to="/Users">Users</Link>,
             key: "Users",
             icon: <UserOutlined />
+          },
+          {
+            label: <Link to="/Movies">Movies</Link>,
+            key: "Movies",
+            icon: <VideoCameraOutlined />
           },
           {
             label: authenticated ?

@@ -1,3 +1,4 @@
+
 const Admin = require('./Model/Admin');
 const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
@@ -9,9 +10,9 @@ module.exports = function (passport) {
     return cb(null, user.username)
   });
   passport.deserializeUser(async (username, cb) => {
+    console.log('deserialize: ', username);
     const user = await Admin.findOne({ username: username });
-    console.log('deserialize: ', user);
-    return cb(null, user);
+    return cb(null, user.username);
   });
 
   passport.use(new LocalStrategy(async (username, password, done) => {

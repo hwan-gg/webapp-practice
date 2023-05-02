@@ -2,7 +2,7 @@ import { createActions } from "redux-actions";
 import axios from "axios";
 // import User from 'Model/User'
 
-
+axios.defaults.withCredentials = true;
 
 const actions = createActions({
     USERS: {

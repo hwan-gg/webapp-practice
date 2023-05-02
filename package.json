@@ -1,7 +1,7 @@
 {
   "name": "webapp-practice",
   "version": "0.1.0",
-  "proxy": "http://localhost:4444",
+  "proxy": "http://localhost:4004",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
@@ -16,14 +16,11 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "history": "^5.3.0",
     "mongoose": "^7.0.4",
-    "nodemon": "^2.0.22",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "pug": "^3.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",

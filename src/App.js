@@ -6,7 +6,7 @@ import { unstable_HistoryRouter as Router, Routes, Route } from 'react-router-do
 import history from './history';
 import actions from './Actions';
 import Navbar from './Components/Navbar';
-import { Home, Login, Users, Profile } from './Components/Pages'
+import { Home, Login, Users, Profile, Movies } from './Components/Pages'
 import './App.css';
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect( () => {
-    dispatch(actions.admin.enter);
+    dispatch(actions.admin.enter());
   },[dispatch]);
 
   return (
@@ -25,6 +25,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Users" element={<Users />} />
             <Route path="/Login" element={<Login />} />
+            <Route path="/Movies" element={<Movies />} />
             <Route path="/Profile" element={<Profile />} />
           </Routes>
           <Footer style={{ textAlign: 'center' }}>Hwan's webapp for practicing backend</Footer>

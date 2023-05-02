@@ -57,6 +57,7 @@ const reducer = typeToReducer({
     },
     [actions.admin.enter]: {
         [ActionType.Fulfilled]: (state, action) => {
+            console.log(action.payload);
             return {
                 ...state,
                 authenticated: action.payload.authenticated
