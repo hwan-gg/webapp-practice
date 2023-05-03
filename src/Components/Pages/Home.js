@@ -7,9 +7,9 @@ const { Title } = Typography;
 function Home() {
 
   return (
-    <Content style={{ padding: 30 }}>
+    <Content style={{ padding: 30, height: '85vh' }}>
       <div className='Home' style={{ minHeight: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <Title> HELLO </Title>
+        <Title> MFLIX </Title>
       </div>
     </Content>
   )

@@ -18,7 +18,7 @@ function Login() {
     };
 
     return (
-        <Content style={{ justifyContent: "center" }}>
+        <Content style={{ justifyContent: "center", height: '85vh' }}>
             <Title style={{ marginLeft: '42%', paddingTop: '5%' }}>Login</Title>
             <Form
                 name="basic"
