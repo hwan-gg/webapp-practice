@@ -16,8 +16,8 @@ function Users() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actions.users.get());
-  }, [dispatch]);
+    if( users.length === 0 ) dispatch(actions.users.get());
+  }, [dispatch, users]);
 
   const [addOpen, setAddOpen] = useState(false);
   const [failOpen, setFailOpen] = useState(false);

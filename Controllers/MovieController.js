@@ -6,14 +6,14 @@ async function getMovies(req, res) {
     {
       $match: {
         poster: { $exists: true },
-        "directors.1": { $exists: true },
+        "directors.0": { $exists: true },
         title: { $exists: true },
         year: { $exists: true },
       },
     },
     {
       $group: {
-        _id: { title: "$title", director: "$directors.1" },
+        _id: { title: "$title", director: { $first: "$directors" } },
         poster: { $first: "$poster" },
         year: { $first: "$year" },
       },
