@@ -7,6 +7,8 @@ const initialState = {
   authenticated: false,
   users: [],
   movies: [],
+  currentUser: null,
+  userProfile: null
 };
 
 const reducer = typeToReducer(
@@ -42,6 +44,7 @@ const reducer = typeToReducer(
         history.push(action.payload.redirect);
         return {
           ...state,
+          currentUser: action.payload.currentUser,
           authenticated: action.payload.authenticated,
         };
       },
@@ -51,7 +54,9 @@ const reducer = typeToReducer(
         history.push("/Login");
         return {
           ...state,
+          currentUser: action.payload.currentUser,
           authenticated: action.payload.authenticated,
+          userProile: null,
         };
       },
     },
@@ -60,6 +65,7 @@ const reducer = typeToReducer(
         console.log(action.payload);
         return {
           ...state,
+          currentUser: action.payload.currentUser,
           authenticated: action.payload.authenticated,
         };
       },
@@ -69,6 +75,17 @@ const reducer = typeToReducer(
         return {
           ...state,
           movies: action.payload,
+        };
+      },
+    },
+    [actions.profile.get]: {
+      [ActionType.Fulfilled]: (state, action) => {
+        console.log(action.payload);
+        history.push(`/Profile/${action.payload.username}`);
+        return {
+          ...state,
+          currentUser: action.payload.username,
+          userProfile: action.payload.userProfile,
         };
       },
     },

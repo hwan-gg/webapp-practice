@@ -29,7 +29,7 @@ function App() {
           <Route path="/Users" element={<Users />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Movies" element={<Movies />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Profile/:username" element={<Profile />} />
         </Routes>
         <Footer style={{ textAlign: "center" }}>
           Hwan's webapp for practicing backend

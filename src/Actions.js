@@ -46,6 +46,13 @@ const actions = createActions({
         return arr;
       }),
   },
+  PROFILE: {
+    GET: (username) => 
+    axios.get(`http://localhost:4444/Profile/${username}`).then((res) => {
+      console.log('called')
+      return res.data;
+    })
+  }
 });
 
 export default actions;
