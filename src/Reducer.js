@@ -80,8 +80,6 @@ const reducer = typeToReducer(
     },
     [actions.profile.get]: {
       [ActionType.Fulfilled]: (state, action) => {
-        console.log(action.payload);
-        history.push(`/Profile/${action.payload.username}`);
         return {
           ...state,
           currentUser: action.payload.username,

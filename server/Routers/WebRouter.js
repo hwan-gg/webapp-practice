@@ -3,8 +3,12 @@ const router = express.Router();
 const AdminController = require('../Controllers/AdminController');
 
 const isAuthenticated = (req, res, next) => {
-    if (req.isAuthenticated()) next();
-    else res.redirect('/Unauth');
+    if (req.isAuthenticated()) { 
+        next();
+    }
+    else {
+        res.redirect('/Unauth');
+    }
 }
 
 router.get('/Unauth', (req, res) => {
